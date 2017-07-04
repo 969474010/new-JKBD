@@ -49,4 +49,12 @@ public class ExamInfo {
     public void setQuestionCount(int questionCount) {
         this.questionCount = questionCount;
     }
+
+    @Override
+    public String toString() {
+        return
+                "考试科目：C1" + "\n" +
+                "考题数量：100" + "\n"+
+                "考试时间：10分钟" ;
+    }
 }

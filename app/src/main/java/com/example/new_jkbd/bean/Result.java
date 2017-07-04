@@ -42,5 +42,5 @@ public class Result {
         this.result = result;
     }
 
-    
+
 }
