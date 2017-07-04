@@ -1,7 +1,9 @@
-package com.example.new_jkbd;
+package com.example.new_jkbd.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.new_jkbd.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,11 +1,12 @@
-package com.example.new_jkbd;
+package com.example.new_jkbd.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.example.new_jkbd.R;
 
 /**
  * Created by &&&&& on 2017/7/4.
