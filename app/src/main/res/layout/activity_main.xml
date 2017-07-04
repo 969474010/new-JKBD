@@ -17,6 +17,7 @@
             android:drawableTop="@mipmap/main_menu_exam"
             android:background="@null"
             android:gravity="center"
+            android:onClick="text"
             android:text="随机测试"
             android:textColor="#000"
             android:textSize="18dp"/>
@@ -42,20 +43,21 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/main_menu_exam"
+            android:drawableTop="@mipmap/main_menu_message"
             android:background="@null"
             android:layout_gravity="center"
 
-            android:text="随机测试"
+            android:text="设置"
             android:textColor="#000"
             android:textSize="18dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/main_menu_result"
+            android:drawableTop="@mipmap/main_menu_exit"
+            android:onClick="Exit"
             android:background="@null"
             android:layout_marginLeft="10dp"
-            android:text="全部测试"
+            android:text="退出"
             android:textColor="#000"
             android:textSize="18dp"/>
     </LinearLayout>
