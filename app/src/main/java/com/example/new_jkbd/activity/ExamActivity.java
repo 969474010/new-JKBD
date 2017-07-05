@@ -1,5 +1,6 @@
 package com.example.new_jkbd.activity;
 
+import android.animation.AnimatorSet;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import com.example.new_jkbd.ExamApplication;
 import com.example.new_jkbd.R;
 import com.example.new_jkbd.bean.Exam;
 import com.example.new_jkbd.bean.ExamInfo;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -21,6 +23,8 @@ import java.util.List;
 public class ExamActivity extends AppCompatActivity {
     TextView tvExamInfo,tvExamTitle,tv_op1,tv_op2,tv_op3,tv_op4;
     ImageView imageView;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +66,9 @@ public class ExamActivity extends AppCompatActivity {
             tv_op2.setText(exam.getItem2());
             tv_op3.setText(exam.getItem3());
             tv_op4.setText(exam.getItem4());
+            Picasso.with(ExamActivity.this)
+                    .load(exam.getUrl())
+                    .into(imageView);
         }
     }
 
