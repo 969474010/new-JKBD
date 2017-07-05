@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -32,12 +33,23 @@ public class ExamActivity extends AppCompatActivity {
     boolean isLoadExamInfo=false;
     boolean isLoadQuestion=false;
 
+    LoadExamBroadcast mLoadExamBroadcast;
+    LoadQuestionBroadcast mLoadQuestionBroadcast;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
+        mLoadExamBroadcast=new LoadExamBroadcast();
+        mLoadQuestionBroadcast=new LoadQuestionBroadcast();
+        setListenter();
         initView();
         loadData();
+    }
+
+    private void setListenter() {
+        registerReceiver(mLoadExamBroadcast,new IntentFilter(ExamApplication.LOAD_EXAM_INFO));
+        registerReceiver(mLoadQuestionBroadcast,new IntentFilter(ExamApplication.LOAD_EXAM_QUESTION));
     }
 
     private void loadData() {
@@ -97,10 +109,20 @@ public class ExamActivity extends AppCompatActivity {
         tvExamInfo.setText(examInfo.toString());
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mLoadExamBroadcast!=null)
+        {
+            unregisterReceiver(mLoadExamBroadcast);
+        }
+        if(mLoadQuestionBroadcast!=null)
+        {
+            unregisterReceiver(mLoadQuestionBroadcast);
+        }
+    }
 
-
-
-    class loadExamBroadcast extends BroadcastReceiver
+    class LoadExamBroadcast extends BroadcastReceiver
     {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -112,7 +134,7 @@ public class ExamActivity extends AppCompatActivity {
             initData();
         }
     }
-    class loadQuestionBroadcast extends BroadcastReceiver
+    class LoadQuestionBroadcast extends BroadcastReceiver
     {
         @Override
         public void onReceive(Context context, Intent intent) {
