@@ -30,7 +30,7 @@ import java.util.List;
  */
 
 public class ExamActivity extends AppCompatActivity {
-    TextView tvExamInfo,tvExamTitle,tv_op1,tv_op2,tv_op3,tv_op4;
+    TextView tvExamInfo,tvExamTitle,tv_op1,tv_op2,tv_op3,tv_op4,tvLoadingText;
     ImageView imageView;
     IExamBiz biz;
     boolean isLoadExamInfo=false;
@@ -77,22 +77,31 @@ public class ExamActivity extends AppCompatActivity {
         tv_op3= (TextView) findViewById(R.id.tv_op3);
         tv_op4= (TextView) findViewById(R.id.tv_op4);
         imageView= (ImageView) findViewById(R.id.im_exam_image);
+        tvLoadingText= (TextView) findViewById(R.id.tv_loadingtext);
     }
 
     private void initData() {
-        if(isLoadQuestion&&isLoadExamInfo)
+        if(isLoadQuestionReceiver&&isLoadExamInfoReceiver)
         {
-            LayoutLoading.setVisibility(View.GONE);
-            ExamInfo examInfo=ExamApplication.getInstance().getmExamInfo();
-            if(examInfo!=null)
+            if(isLoadQuestion&&isLoadExamInfo)
             {
-                showData(examInfo);
+                LayoutLoading.setVisibility(View.GONE);
+                ExamInfo examInfo=ExamApplication.getInstance().getmExamInfo();
+                if(examInfo!=null)
+                {
+                    showData(examInfo);
+                }
+                List<Exam> examList=ExamApplication.getInstance().getmExamList();
+                if(examList!=null)
+                {
+                    showExam(examList);
+                }
             }
-            List<Exam> examList=ExamApplication.getInstance().getmExamList();
-            if(examList!=null)
+            else
             {
-                showExam(examList);
+                tvLoadingText.setText("下载失败，点击重新下载！");
             }
+
         }
 
     }
