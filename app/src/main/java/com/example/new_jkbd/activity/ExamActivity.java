@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Layout;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.new_jkbd.ExamApplication;
@@ -32,6 +35,9 @@ public class ExamActivity extends AppCompatActivity {
     IExamBiz biz;
     boolean isLoadExamInfo=false;
     boolean isLoadQuestion=false;
+    LinearLayout LayoutLoading;
+    boolean isLoadExamInfoReceiver=false;
+    boolean isLoadQuestionReceiver=false;
 
     LoadExamBroadcast mLoadExamBroadcast;
     LoadQuestionBroadcast mLoadQuestionBroadcast;
@@ -63,7 +69,7 @@ public class ExamActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
+        LayoutLoading=(LinearLayout)findViewById(R.id.layout_loading);
         tvExamInfo= (TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle= (TextView) findViewById(R.id.tv_exam_title);
         tv_op1= (TextView) findViewById(R.id.tv_op1);
@@ -76,6 +82,7 @@ public class ExamActivity extends AppCompatActivity {
     private void initData() {
         if(isLoadQuestion&&isLoadExamInfo)
         {
+            LayoutLoading.setVisibility(View.GONE);
             ExamInfo examInfo=ExamApplication.getInstance().getmExamInfo();
             if(examInfo!=null)
             {
@@ -131,6 +138,7 @@ public class ExamActivity extends AppCompatActivity {
             {
                 isLoadExamInfo=true;
             }
+            isLoadExamInfoReceiver=true;
             initData();
         }
     }
@@ -143,6 +151,7 @@ public class ExamActivity extends AppCompatActivity {
             {
                 isLoadQuestion=true;
             }
+            isLoadQuestionReceiver=true;
             initData();
         }
     }
