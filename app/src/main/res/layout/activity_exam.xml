@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/exam_title"
+        tools:text="@string/exam_title"
         android:textColor="#000"
         android:textSize="18dp"
         android:layout_marginLeft="10dp"
@@ -37,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这个标志是何意义？"
+            tools:text="这个标志是何意义？"
             android:textSize="18dp"
             android:textColor="#000"/>
 
@@ -49,7 +50,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@mipmap/exam_image"
+            tools:src="@mipmap/exam_image"
             android:layout_gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,7 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="非机动车车道"
+                tools:text="非机动车车道"
                 android:textSize="18dp"
                 android:textColor="#000"/>
 
@@ -86,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="非机动车车道"
+                tools:text="非机动车车道"
                 android:textSize="18dp"
                 android:textColor="#000"/>
 
@@ -106,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="非机动车车道"
+                tools:text="非机动车车道"
                 android:textSize="18dp"
                 android:textColor="#000"/>
 
@@ -126,7 +127,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="非机动车车道"
+                tools:text="非机动车车道"
                 android:textSize="18dp"
                 android:textColor="#000"/>
 
