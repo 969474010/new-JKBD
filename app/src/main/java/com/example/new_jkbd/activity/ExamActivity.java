@@ -13,6 +13,7 @@ import android.text.Layout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.new_jkbd.ExamApplication;
@@ -38,6 +39,7 @@ public class ExamActivity extends AppCompatActivity {
     LinearLayout LayoutLoading;
     boolean isLoadExamInfoReceiver=false;
     boolean isLoadQuestionReceiver=false;
+    ProgressBar dialog;
 
     LoadExamBroadcast mLoadExamBroadcast;
     LoadQuestionBroadcast mLoadQuestionBroadcast;
@@ -78,6 +80,7 @@ public class ExamActivity extends AppCompatActivity {
         tv_op4= (TextView) findViewById(R.id.tv_op4);
         imageView= (ImageView) findViewById(R.id.im_exam_image);
         tvLoadingText= (TextView) findViewById(R.id.tv_loadingtext);
+        dialog= (ProgressBar) findViewById(R.id.load_dialog);
     }
 
     private void initData() {
@@ -99,6 +102,7 @@ public class ExamActivity extends AppCompatActivity {
             }
             else
             {
+                dialog.setVisibility(View.GONE);
                 tvLoadingText.setText("下载失败，点击重新下载！");
             }
 
