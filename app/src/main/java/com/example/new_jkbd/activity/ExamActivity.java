@@ -1,6 +1,9 @@
 package com.example.new_jkbd.activity;
 
 import android.animation.AnimatorSet;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -12,6 +15,8 @@ import com.example.new_jkbd.ExamApplication;
 import com.example.new_jkbd.R;
 import com.example.new_jkbd.bean.Exam;
 import com.example.new_jkbd.bean.ExamInfo;
+import com.example.new_jkbd.biz.ExamBiz;
+import com.example.new_jkbd.biz.IExamBiz;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,14 +28,26 @@ import java.util.List;
 public class ExamActivity extends AppCompatActivity {
     TextView tvExamInfo,tvExamTitle,tv_op1,tv_op2,tv_op3,tv_op4;
     ImageView imageView;
-
+    IExamBiz biz;
+    boolean isLoadExamInfo=false;
+    boolean isLoadQuestion=false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exam);
         initView();
-        initData();
+        loadData();
+    }
+
+    private void loadData() {
+        biz=new ExamBiz();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                biz.beginExam();
+            }
+        }).start();
     }
 
     private void initView() {
@@ -45,16 +62,20 @@ public class ExamActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        ExamInfo examInfo=ExamApplication.getInstance().getmExamInfo();
-        if(examInfo!=null)
+        if(isLoadQuestion&&isLoadExamInfo)
         {
-            showData(examInfo);
+            ExamInfo examInfo=ExamApplication.getInstance().getmExamInfo();
+            if(examInfo!=null)
+            {
+                showData(examInfo);
+            }
+            List<Exam> examList=ExamApplication.getInstance().getmExamList();
+            if(examList!=null)
+            {
+                showExam(examList);
+            }
         }
-        List<Exam> examList=ExamApplication.getInstance().getmExamList();
-        if(examList!=null)
-        {
-            showExam(examList);
-        }
+
     }
 
     private void showExam(List<Exam> examList) {
@@ -76,4 +97,31 @@ public class ExamActivity extends AppCompatActivity {
         tvExamInfo.setText(examInfo.toString());
     }
 
+
+
+
+    class loadExamBroadcast extends BroadcastReceiver
+    {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean isSuccess=intent.getBooleanExtra(ExamApplication.LOAD_DATA_SUCCESS,false);
+            if(isSuccess)
+            {
+                isLoadExamInfo=true;
+            }
+            initData();
+        }
+    }
+    class loadQuestionBroadcast extends BroadcastReceiver
+    {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            boolean isSuccess=intent.getBooleanExtra(ExamApplication.LOAD_DATA_SUCCESS,false);
+            if(isSuccess)
+            {
+                isLoadQuestion=true;
+            }
+            initData();
+        }
+    }
 }
