@@ -13,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -34,11 +35,12 @@ import java.util.List;
 
 public class ExamActivity extends AppCompatActivity {
     TextView tvExamInfo,tvExamTitle,tv_op1,tv_op2,tv_op3,tv_op4,tvLoadingText,tvNo;
+    CheckBox cb01,cb02,cb03,cb04;
     ImageView imageView;
     IExamBiz biz;
     boolean isLoadExamInfo=false;
     boolean isLoadQuestion=false;
-    LinearLayout LayoutLoading;
+    LinearLayout LayoutLoading,Layout03,Layout04;
     boolean isLoadExamInfoReceiver=false;
     boolean isLoadQuestionReceiver=false;
     ProgressBar dialog;
@@ -78,6 +80,8 @@ public class ExamActivity extends AppCompatActivity {
 
     private void initView() {
         LayoutLoading=(LinearLayout)findViewById(R.id.layout_loading);
+        Layout03=(LinearLayout)findViewById(R.id.Layout03);
+        Layout04=(LinearLayout)findViewById(R.id.Layout04);
         tvExamInfo= (TextView) findViewById(R.id.tv_examinfo);
         tvExamTitle= (TextView) findViewById(R.id.tv_exam_title);
         tvNo=(TextView)findViewById(R.id.tv_exam_no);
@@ -85,6 +89,10 @@ public class ExamActivity extends AppCompatActivity {
         tv_op2= (TextView) findViewById(R.id.tv_op2);
         tv_op3= (TextView) findViewById(R.id.tv_op3);
         tv_op4= (TextView) findViewById(R.id.tv_op4);
+        cb01= (CheckBox) findViewById(R.id.cb01);
+        cb02= (CheckBox) findViewById(R.id.cb02);
+        cb03= (CheckBox) findViewById(R.id.cb03);
+        cb04= (CheckBox) findViewById(R.id.cb04);
         imageView= (ImageView) findViewById(R.id.im_exam_image);
         tvLoadingText= (TextView) findViewById(R.id.tv_loadingtext);
         dialog= (ProgressBar) findViewById(R.id.load_dialog);
@@ -131,6 +139,10 @@ public class ExamActivity extends AppCompatActivity {
             tv_op2.setText(exam.getItem2());
             tv_op3.setText(exam.getItem3());
             tv_op4.setText(exam.getItem4());
+            Layout03.setVisibility(exam.getItem3().equals("")?View.GONE:View.INVISIBLE);
+            cb03.setVisibility(exam.getItem3().equals("")?View.GONE:View.INVISIBLE);
+            Layout04.setVisibility(exam.getItem3().equals("")?View.GONE:View.INVISIBLE);
+            cb04.setVisibility(exam.getItem3().equals("")?View.GONE:View.INVISIBLE);
             if(exam.getUrl()!=null && !exam.getUrl().equals(""))
             {
                 imageView.setVisibility(View.VISIBLE);
