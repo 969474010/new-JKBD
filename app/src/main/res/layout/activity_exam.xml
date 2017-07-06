@@ -51,11 +51,12 @@
         android:orientation="horizontal"
         android:layout_margin="10dp">
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1."
-        android:textSize="18dp"
-        android:textColor="#000"/>
+            android:id="@+id/tv_exam_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1."
+            android:textSize="18dp"
+            android:textColor="#000"/>
         <TextView
             android:id="@+id/tv_exam_title"
             android:layout_width="wrap_content"
@@ -203,6 +204,7 @@
             android:drawableLeft="@mipmap/exam_pre32x32"
             android:background="@null"
             android:text="上一题"
+            android:onClick="preQuestion"
             android:textSize="18dp"
             android:textColor="#000"/>
         <Button
@@ -213,6 +215,7 @@
             android:drawableRight="@mipmap/exam_next32x32"
             android:background="@null"
             android:text="下一题"
+            android:onClick="nextQuestion"
             android:textSize="18dp"
             android:textColor="#000"/>
         <Button
